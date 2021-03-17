@@ -2,6 +2,7 @@ package br.com.michelli.eventoapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,4 +53,14 @@ public class EventoController {
 		return mv;//devolvemos a tela
 	}
 	
+	/*
+	 * 
+	 */
+	@RequestMapping("/{codigo}")
+	public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo) {
+		ModelAndView mv = new ModelAndView("evento/detalhesEvento");
+		Evento evento = er.findById(codigo);
+		mv.addObject("evento", evento);
+		return mv;
+	}
 }

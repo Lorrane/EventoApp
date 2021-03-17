@@ -6,6 +6,6 @@ import br.com.michelli.eventoapp.model.Evento;
 
 public interface EventoRepository extends CrudRepository <Evento, String>{
 	
-	
+	public Evento findById(long codigo);
 
 }

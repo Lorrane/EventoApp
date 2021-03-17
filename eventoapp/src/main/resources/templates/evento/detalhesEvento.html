@@ -3,12 +3,26 @@
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8">
-<title>Evento App</title>
+<title>Detalhes Evento</title>
 </head>
 <body>
-	<h1> Olá, bem vindo ao app de Eventos!</h1>
-	<a href="/cadastrarEvento"><button>Cadastrar</button></a>
+	<h1> Detalhes Evento</h1>
+	<a href="/eventos"><button>Lista de Eventos</button></a>
 	
+	<div th:each="evento : ${evento}">
+		<div class="row">
+			<p>
+				<span th:text="${evento.nome}"></span>
+			</p>
+			<p>
+				<span th:text="${evento.local}"></span>	
+			</p>
+			<p><span th:text="${evento.data}"></span></p>
+			<p><span th:text="${evento.horario}"></span></p>
+		</div>
+	</div>
+	
+	<!-- 
 	<table>
 		<thead>
 			<tr>
@@ -27,5 +41,6 @@
 			</tr>
 		</tbody>
 	</table>
+	 -->
 </body>
 </html>
