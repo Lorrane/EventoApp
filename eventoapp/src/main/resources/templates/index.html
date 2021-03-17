@@ -6,6 +6,15 @@
 </head>
 <body>
 	<h1> Olá, bem vindo ao app de Eventos!</h1>
-	<button>Cadastrar</button></a>
+	<a href="/cadastrarEvento"><button>Cadastrar</button></a>
+	
+	<div th:each="evento : ${eventos}">
+		<div class="row">
+			<p><span th:text="${evento.nome}"></span></p>
+			<p><span th:text="${evento.local}"></span></p>
+			<p><span th:date="${evento.data}"></span></p>
+			<p><span th:text="${evento.horario}"></span></p>
+		</div>
+	</div>
 </body>
 </html>
