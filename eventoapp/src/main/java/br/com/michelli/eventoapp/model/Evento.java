@@ -1,11 +1,13 @@
 package br.com.michelli.eventoapp.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Evento implements Serializable{
@@ -19,16 +21,24 @@ public class Evento implements Serializable{
 	private String local;
 	private String data;
 	private String horario;
+	@OneToMany
+	private List<Convidado> convidados;
 	
 	
+	public List<Convidado> getConvidados() {
+		return convidados;
+	}
+	public void setConvidados(List<Convidado> convidados) {
+		this.convidados = convidados;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
 	public Long getId() {
 		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
