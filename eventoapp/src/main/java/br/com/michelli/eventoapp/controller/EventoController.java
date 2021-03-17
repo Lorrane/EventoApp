@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.michelli.eventoapp.model.Convidado;
 import br.com.michelli.eventoapp.model.Evento;
+import br.com.michelli.eventoapp.repository.ConvidadoRepository;
 import br.com.michelli.eventoapp.repository.EventoRepository;
 
 @Controller
@@ -15,6 +17,9 @@ public class EventoController {
 
 	@Autowired //Utilizado para "preencher" o Repository com as dependencias externas que usaremos
 	private EventoRepository er;
+	
+	@Autowired
+	private ConvidadoRepository cr;
 	
 	/* Ao ser chamado o /cadastrarEvento, vamos devolver a tela
 	 * formEvento que está na pasta evento no templates
@@ -56,11 +61,23 @@ public class EventoController {
 	/*
 	 * 
 	 */
-	@RequestMapping("/{codigo}")
+	@RequestMapping(value="/{codigo}", method=RequestMethod.GET)
 	public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo) {
 		ModelAndView mv = new ModelAndView("evento/detalhesEvento");
 		Evento evento = er.findById(codigo);
 		mv.addObject("evento", evento);
 		return mv;
+	}
+	
+	/*
+	 * 
+	 */
+	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
+	public String detalhesEventoPost(@PathVariable("codigo") long codigo, Convidado convidado) {
+		Evento evento = er.findById(codigo);
+		convidado.setEvento(evento);
+		cr.save(convidado); 
+		
+		return "redirect:/{codigo}";
 	}
 }
