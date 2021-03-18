@@ -23,30 +23,26 @@
 	</div>
 	
 	<form method="post">
-		Nome:<input type="text" name="rg" }>
-		Rg:<input type="text" name="nome" }>
+		Nome:<input type="text" name="rg" >
+		Rg:<input type="text" name="nome" >
 		<button type="submit">Salvar Convidado</button>
 	</form>
 	
-	<!-- 
+	
 	<table>
 		<thead>
 			<tr>
 				<th>Nome<th>
-				<th>Evento<th>
-				<th>Data<th>
-				<th>Horário<th>
+				<th>Rg<th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="evento : ${eventos}">
-				<td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><span th:text="${evento.nome}"></span></a></td>
-				<td><span th:text="${evento.local}"></span></td>
-				<td><span th:text="${evento.data}"></span></td>
-				<td><span th:text="${evento.horario}"></span></td>
+			<tr th:each="convidado : ${convidados}">
+				<td><span th:text="${convidado.nome}"></span></td>
+				<td><span th:text="${convidado.rg}"></span></td>
 			</tr>
 		</tbody>
 	</table>
-	 -->
+	 
 </body>
 </html>
